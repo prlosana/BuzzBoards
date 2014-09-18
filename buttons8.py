@@ -10,7 +10,7 @@
 import smbus
 import time 
 
-class buttons8():
+class Buttons8():
 
     #I2C Addresses
     #-------------------------------------------------------------------------------
@@ -119,7 +119,8 @@ if __name__ == "__main__":
 	
 	print ("Press a button...")
 	result = ""
-	buttons = buttons8()
+	i2cBus = 0
+	buttons = buttons8(i2cBus)
 	buttons.clean()
 
 	while 1:

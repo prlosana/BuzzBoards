@@ -158,7 +158,7 @@ class buttonsThread (threading.Thread):
 def getButtons():
 	result = ""
 	#Creates buttons instance
-	buttons = buttons8.buttons8()
+	buttons = buttons8.Buttons8(i2cBus)
 	buttons.clean()
 
 	print "Start buttons listening..."
