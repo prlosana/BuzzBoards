@@ -478,11 +478,11 @@ if __name__ == "__main__":
 								elif data == "LIGHT1_ON\n":			 
 									print ("Lighting set 1 ON")
 									box.setLighting1 (True, 0, False)
-									time.sleep(1) 
+									##time.sleep(1) 
 								elif data == "LIGHT1_BLINK\n":
 									print ("Lighting set 1 BLINK")
 									box.setLighting1 (True, 0, True)
-									time.sleep(1) 			
+									#time.sleep(1) 			
 								elif subdata == "LIGHT1_DIM":  #format for dimmable values LIGHT1_DIM%5
 									try:
 										subvalue = float (data[subdata_pos+1:])
@@ -497,19 +497,19 @@ if __name__ == "__main__":
 										dim = float(subvalue / 100)
 										print ("Lighting set 1 DIMMABLE ", subvalue , " % - ", dim)
 										box.setLighting1 (True, dim, False)
-										time.sleep(1) 			
+										#time.sleep(1) 			
 								elif data == "GET_LIGHT1\n":
 									msg = box.getLighting1()
 									print ("Lighting set 1  - Get status ",msg)
-									time.sleep(1)		
+									#time.sleep(1)		
 								elif data == "LIGHT2_ON\n":
 									print ("Lighting set 2 ON")
 									box.setLighting2 (True, 0, False)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LIGHT2_BLINK\n":
 									print ("Lighting set 2 BLINK")
 									box.setLighting2 (True, 0, True)
-									time.sleep(1) 			
+									#time.sleep(1) 			
 								elif subdata == "LIGHT2_DIM":  #format for dimmable values LIGHT1_DIM%5
 									try:
 										subvalue = float (data[subdata_pos+1:])
@@ -524,203 +524,203 @@ if __name__ == "__main__":
 										dim = float(subvalue / 100)
 										print ("Lighting set 2 DIMMABLE ", subvalue , " % - ", dim)
 										box.setLighting2 (True, dim, False)
-										time.sleep(1) 			
+										#time.sleep(1) 			
 								elif data == "GET_LIGHT2\n":
 									msg = box.getLighting2()
 									print ("Lighting set 2  - Get status ",msg)
-									time.sleep(1)		
+									#time.sleep(1)		
 								elif data == "FAN_ON\n":
 									print ("Fan ON")
 									box.setFan (True)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "HEATER_ON\n":
 									print ("Heater ON")
 									box.setHeater (True)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LIGHT1_OFF\n":
 									print ("Lighting set 1 OFF")
 									box.setLighting1 (False, 0, False)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LIGHT2_OFF\n":
 									print ("Lighting set 2 OFF")
 									box.setLighting2 (False, 0, False)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "FAN_OFF\n":
 									print ("Fan OFF")
 									box.setFan (False)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "HEATER_OFF\n":
 									print ("Heater OFF")
 									box.setHeater (False)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "GET_FAN\n":
 									msg = box.getFan()
 									print ("Fan  - Get status ",msg)
-									time.sleep(1)		
+									#time.sleep(1)		
 								elif data == "GET_HEATER\n":
 									msg = box.getHeater()
 									print ("Heater  - Get status ",msg)
-									time.sleep(1)	
+									#time.sleep(1)	
 								elif data == "GET_LED1\n":
 									msg = tricolor.getLed1()
 									print ("Led 1  - Get status ",msg)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "GET_LED2\n":
 									msg = tricolor.getLed2()
 									print ("Led 2  - Get status ",msg)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "GET_LED3\n":
 									msg = tricolor.getLed3()
 									print ("Led 3  - Get status ",msg)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "GET_LED4\n":
 									msg = tricolor.getLed4()
 									print ("Led 4  - Get status ",msg)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "GET_LED5\n":
 									msg = tricolor.getLed5()
 									print ("Led 5  - Get status ",msg)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "GET_LED6\n":
 									msg = tricolor.getLed6()
 									print ("Led 6  - Get status ",msg)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "GET_LED7\n":
 									msg = tricolor.getLed7()
 									print ("Led 7  - Get status ",msg)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "GET_LED8\n":
 									msg = tricolor.getLed8()
 									print ("Led 8  - Get status ",msg)
-									time.sleep(1)									
+									#time.sleep(1)									
 								elif data == "LED1_R\n":
 									print ("Led 1 RED")
 									tricolor.turnOnLed (1,2)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LED1_G\n":
 									print ("Led 1 GREEN")
 									tricolor.turnOnLed (1,1)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LED1_Y\n":
 									print ("Led 1 YELLOW")
 									tricolor.turnOnLed (1,0)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LED1_OFF\n":
 									print ("Led 1 OFF")
 									tricolor.turnOnLed (1,3)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LED2_R\n":
 									print ("Led 2 RED")
 									tricolor.turnOnLed (2,2)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LED2_G\n":
 									print ("Led 2 GREEN")
 									tricolor.turnOnLed (2,1)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LED2_Y\n":
 									print ("Led 2 YELLOW")
 									tricolor.turnOnLed (2,0)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LED2_OFF\n":
 									print ("Led 2 OFF")
 									tricolor.turnOnLed (2,3)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LED3_R\n":
 									print ("Led 3 RED")
 									tricolor.turnOnLed (3,2)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LED3_G\n":
 									print ("Led 3 GREEN")
 									tricolor.turnOnLed (3,1)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LED3_Y\n":
 									print ("Led 3 YELLOW")
 									tricolor.turnOnLed (3,0)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LED3_OFF\n":
 									print ("Led 3 OFF")
 									tricolor.turnOnLed (3,3)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LED4_R\n":
 									print ("Led 4 RED")
 									tricolor.turnOnLed (4,2)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LED4_G\n":
 									print ("Led 4 GREEN")
 									tricolor.turnOnLed (4,1)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LED4_Y\n":
 									print ("Led 4 YELLOW")
 									tricolor.turnOnLed (4,0)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LED4_OFF\n":
 									print ("Led 4 OFF")
 									tricolor.turnOnLed (4,3)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LED5_R\n":
 									print ("Led 5 RED")
 									tricolor.turnOnLed (5,2)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LED5_G\n":
 									print ("Led 5 GREEN")
 									tricolor.turnOnLed (5,1)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LED5_Y\n":
 									print ("Led 5 YELLOW")
 									tricolor.turnOnLed (5,0)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LED5_OFF\n":
 									print ("Led 5 OFF")
 									tricolor.turnOnLed (5,3)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LED6_R\n":
 									print ("Led 6 RED")
 									tricolor.turnOnLed (6,2)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LED6_G\n":
 									print ("Led 6 GREEN")
 									tricolor.turnOnLed (6,1)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LED6_Y\n":
 									print ("Led 6 YELLOW")
 									tricolor.turnOnLed (6,0)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LED6_OFF\n":
 									print ("Led 6 OFF")
 									tricolor.turnOnLed (6,3)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LED7_R\n":
 									print ("Led 7 RED")
 									tricolor.turnOnLed (7,2)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LED7_G\n":
 									print ("Led 7 GREEN")
 									tricolor.turnOnLed (7,1)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LED7_Y\n":
 									print ("Led 7 YELLOW")
 									tricolor.turnOnLed (7,0)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LED7_OFF\n":
 									print ("Led 7 OFF")
 									tricolor.turnOnLed (7,3)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LED8_R\n":
 									print ("Led 8 RED")
 									tricolor.turnOnLed (8,2)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LED8_G\n":
 									print ("Led 8 GREEN")
 									tricolor.turnOnLed (8,1)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LED8_Y\n":
 									print ("Led 8 YELLOW")
 									tricolor.turnOnLed (8,0)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "LED8_OFF\n":
 									print ("Led 8 OFF")
 									tricolor.turnOnLed (8,3)
-									time.sleep(1)
+									#time.sleep(1)
 								elif data == "GET_CHANNEL\n":
 									try:
 										#if (connected_multiplexer):
@@ -728,7 +728,7 @@ if __name__ == "__main__":
 										multiplexerReader = wear_multiplexer_reader.WearMultiplexerReader()
 										msg = str(multiplexerReader.getChannel(i2cBus))
 										print "MULTIPLEXER READER - Current channel selected ", msg
-										time.sleep(1)		
+										#time.sleep(1)		
 										#else:
 										#	msg = "ERROR: MULTIPLEXER BOARD NOT CONNECTED"
 									except Exception as e: 
@@ -739,7 +739,7 @@ if __name__ == "__main__":
 										multiplexerReader = wear_multiplexer_reader.WearMultiplexerReader()
 										msg = str(multiplexerReader.getChannel(i2cBus))
 										print "MULTIPLEXER READER - Current channel selected ", msg
-										time.sleep(1)		
+										#time.sleep(1)		
 										try:
 											temperatureSensor = wear_sensor_heat.WearSensorHeat(i2cBus)
 											read_val = temperatureSensor.setPrecision(4)
@@ -755,11 +755,11 @@ if __name__ == "__main__":
 										multiplexerReader = wear_multiplexer_reader.WearMultiplexerReader()
 										msg = str(multiplexerReader.getChannel(i2cBus))
 										print "MULTIPLEXER READER - Current channel selected ", msg
-										time.sleep(1)		
+										#time.sleep(1)		
 										try:
 											#if (connected_sensor_light):
 											lightSensor = wear_sensor_light.WearSensorLight(i2cBus)
-											time.sleep(1)	
+											#time.sleep(1)	
 											msg = str(lightSensor.getLux())		
 											print "LIGHT SENSOR - Light ", msg, " Lux"													
 										except Exception as e: 
@@ -772,10 +772,10 @@ if __name__ == "__main__":
 										multiplexerReader = wear_multiplexer_reader.WearMultiplexerReader()
 										msg = str(multiplexerReader.getChannel(i2cBus))
 										print "MULTIPLEXER READER - Current channel selected ", msg
-										time.sleep(1)		
+										#time.sleep(1)		
 										try:
 											motionSensor = wear_sensor_motion.WearSensorMotion(i2cBus)
-											time.sleep(1)
+											#time.sleep(1)
 											x = motionSensor.getXAxis()		
 											y = motionSensor.getYAxis()		
 											z = motionSensor.getZAxis()	
@@ -801,7 +801,7 @@ if __name__ == "__main__":
 											else:
 												result = multiplexer.setChannel(subvalue)
 												print "MULTIPLEXER board - Enabling channel ",subvalue," in the board... ", result
-												time.sleep(1) 										
+												#time.sleep(1) 										
 										except ValueError:
 											msg = "ERROR: INVALID CHANNEL VALUE"
 									else:

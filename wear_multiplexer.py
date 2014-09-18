@@ -45,10 +45,10 @@ class WearMultiplexer():
 		self.bus = smbus.SMBus(busToUse) #open the bus on /dev/i2c-1	
 		#Initialise multiplexers
 		self.bus.write_byte(self.address_multiplexerA, self.__reset_channel) #set value	
-		time.sleep(0.2) #0.2 second
+		time.sleep(0.005) #0.2 second
 
 		self.bus.write_byte(self.address_multiplexerB, self.__reset_channel) #set value	
-		time.sleep(0.2) #0.2 second
+		time.sleep(0.005) #0.2 second
 		
 		#Set channel 1 as default channel
 		self.bus.write_byte(self.address_multiplexerA, self.__channel0)
@@ -60,10 +60,10 @@ class WearMultiplexer():
 	def clean(self, debug = False):
 		#Initialise multiplexers
 		self.bus.write_byte(self.address_multiplexerA, self.__reset_channel) #set value	
-		time.sleep(0.2) #0.2 second
+		time.sleep(0.005) #0.2 second
 
 		self.bus.write_byte(self.address_multiplexerB, self.__reset_channel) #set value	
-		time.sleep(0.2) #0.2 second
+		time.sleep(0.005) #0.2 second
 		
 		if (debug):
 			print "MULTIPLEXERS - Cleaning channels "
@@ -160,16 +160,16 @@ class WearMultiplexer():
 			return "ERROR"
 
 		self.current_channel = channel	
-		time.sleep(0.2) #0.2 second	
+		time.sleep(0.005) #0.2 second	
 
 		if (debug):
 			# Get value from multiplexers
 			read_val = self.bus.read_byte(self.address_multiplexerA)	
-			time.sleep(0.2) #0.2 second
+			time.sleep(0.005) #0.2 second
 			print "DEBUG - multiplexer1 ---- Binary value = ", bin(read_val), ", Value read = ", read_val
 
 			read_val = self.bus.read_byte(self.address_multiplexerB)	
-			time.sleep(0.2) #0.2 second
+			time.sleep(0.005) #0.2 second
 			print "DEBUG - multiplexer2 ---- Binary value = ", bin(read_val), ", Value read = ", read_val
 
 		return "OK"
