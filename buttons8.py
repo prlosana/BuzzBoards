@@ -14,7 +14,6 @@ class buttons8():
 
     #I2C Addresses
     #-------------------------------------------------------------------------------
-    bus         	= smbus.SMBus(1)    #open the bus on /dev/i2c-0
     address_buttons	= 0x22              #PCA8575 address
 
     #Attributes
@@ -28,12 +27,14 @@ class buttons8():
     status_btn7 = "OFF"
     status_btn8 = "OFF"
     
-    #Global variables
-    #-------------------------------------------------------------------------------
+	#Global variables
+	#-------------------------------------------------------------------------------
+	bus = 0
     read_val = 255
-    
-    def __init__(self):
-        # Initialise values
+
+	def __init__(self, busToUse = 0):
+		# Initialise values
+		self.bus = smbus.SMBus(busToUse) #open the bus on /dev/i2c-1
         self.read_val = 255
 	
     def clean(self):
