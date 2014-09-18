@@ -113,11 +113,11 @@ class BuzzBox():
 		self.setFan (False)
 		self.setHeater (False)			
 
-	def setBlink1(self, blink_period=1, duty_cycle=0.5, frecuency=152):
+	def setBlink1(self, blink_period=1, duty_cycle=0.5, frequency=152):
 		#-----------------------------------------------------------------------
 		#Set pre-scaler PSC0 to achieve a certain blink period
 		#-----------------------------------------------------------------------
-		self.PSC0_value = blink_period * frecuency - 1
+		self.PSC0_value = blink_period * frequency - 1
 		self.PSC0_value = int(math.floor(self.PSC0_value))
 		self.bus.write_byte_data(self.address, self.__PSC0, self.PSC0_value) #set value
 		time.sleep(0.005) #at least 500 microseconds required for set
@@ -130,11 +130,11 @@ class BuzzBox():
 		self.bus.write_byte_data(self.address, self.__PWM0, self.PWM0_value) #set value
 		time.sleep(0.005) #at least 500 microseconds required for set
 
-	def setBlink2(self, blink_period=1, duty_cycle=0.05, frecuency=1):
+	def setBlink2(self, blink_period=1, duty_cycle=0.05, frequency=1):
 		#-----------------------------------------------------------------------
 		#Set pre-scaler PCS1 to dim at maximum frequency // Blink period = max = 0
 		#-----------------------------------------------------------------------
-		self.PSC1_value = blink_period * frecuency - 1
+		self.PSC1_value = blink_period * frequency - 1
 		self.PSC1_value = int(math.floor(self.PSC1_value))
 		self.bus.write_byte_data(self.address, self.__PSC1, self.PSC1_value) #set value
 		time.sleep(0.005) #at least 500 microseconds required for set
