@@ -35,6 +35,7 @@
 # NOTE 3: KAU Project
 #-----------------------------------------------------------------------
 # FOR KAU Boxes values are inverted for lights 1 & 2 , fan and heater (e.g ON = 00 instead of original OFF = 00)
+# The duty cycle was inverted also for KAU Boxes from (self.PWM0_value =  duty_cycle * 256) to (self.PWM0_value =  duty_cycle * -256)
 
 import smbus
 import time
@@ -125,7 +126,7 @@ class BuzzBox():
 		#-----------------------------------------------------------------------
 		#Set PWM0 duty cycle to certain percentage
 		#-----------------------------------------------------------------------
-		self.PWM0_value =  duty_cycle * 256
+		self.PWM0_value =  duty_cycle * -256
 		self.PWM0_value = int(math.floor(self.PWM0_value))
 		self.bus.write_byte_data(self.address, self.__PWM0, self.PWM0_value) #set value
 		time.sleep(0.005) #at least 500 microseconds required for set
@@ -142,7 +143,7 @@ class BuzzBox():
 		#-----------------------------------------------------------------------
 		#Set PWM1 duty cycle to certain percentage - dim value (1-0)
 		#-----------------------------------------------------------------------
-		self.PWM1_value =  duty_cycle * 256
+		self.PWM1_value =  duty_cycle * -256
 		self.PWM1_value = int(math.floor(self.PWM1_value))
 		self.bus.write_byte_data(self.address, self.__PWM1, self.PWM1_value) #set value
 		time.sleep(0.005) #at least 500 microseconds required for set
