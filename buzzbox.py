@@ -293,7 +293,8 @@ if __name__ == "__main__":
 	print ("----------------------------------------------------")
 	
 	box = BuzzBox(1) 		#BUS 1
-
+	box.clean()
+	
 	#print ("Lighting set 1 ON")
 	box.setLighting1 (True, 0, False)
 	print "Lighting set 1 STATUS", box.getLighting1()
