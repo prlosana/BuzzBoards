@@ -111,6 +111,74 @@ class Buttons8():
 				
 		return msg
 
+    def readValueVirtualBtn(self, btn_name = "BTN1", debug = False):
+		# Read values - Default value 255 (0xFF)
+		msg = ""
+		time.sleep(0.2) #0.2 second
+		
+		# Evaluate value
+		if btn_name == "BTN1":		#Virtual button
+			self.read_val = 255	
+			if self.status_btn1 == "OFF":
+				self.status_btn1 = "ON"
+			else:
+				self.status_btn1 = "OFF"
+			msg = "BTN1_"+self.status_btn1
+		elif btn_name == "BTN2":		#Virtual button
+			self.read_val = 255			
+			if self.status_btn2 == "OFF":
+				self.status_btn2 = "ON"
+			else:
+				self.status_btn2 = "OFF"
+			msg = "BTN2_"+self.status_btn2
+		elif btn_name == "BTN3":		#Virtual button
+			self.read_val = 255			
+			if self.status_btn3 == "OFF":
+				self.status_btn3 = "ON"
+			else:
+				self.status_btn3 = "OFF"
+			msg = "BTN3_"+self.status_btn3
+		elif btn_name == "BTN4":		#Virtual button
+			self.read_val = 255			
+			if self.status_btn4 == "OFF":
+				self.status_btn4 = "ON"
+			else:
+				self.status_btn4 = "OFF"
+			msg = "BTN4_"+self.status_btn4	
+		elif btn_name == "BTN5":		#Virtual button
+			self.read_val = 255			
+			if self.status_btn5 == "OFF":
+				self.status_btn5 = "ON"
+			else:
+				self.status_btn5 = "OFF"
+			msg = "BTN5_"+self.status_btn5
+		elif btn_name == "BTN6":		#Virtual button
+			self.read_val = 255			
+			if self.status_btn6 == "OFF":
+				self.status_btn6 = "ON"
+			else:
+				self.status_btn6 = "OFF"
+			msg = "BTN6_"+self.status_btn6	
+		elif btn_name == "BTN7":		#Virtual button
+			self.read_val = 255			
+			if self.status_btn7 == "OFF":
+				self.status_btn7 = "ON"
+			else:
+				self.status_btn7 = "OFF"
+			msg = "BTN7_"+self.status_btn7	
+		elif btn_name == "BTN8":		#Virtual button
+			self.read_val = 255			
+			if self.status_btn8 == "OFF":
+				self.status_btn8 = "ON"
+			else:
+				self.status_btn8 = "OFF"
+			msg = "BTN8_"+self.status_btn8
+		
+		if debug:
+			print msg, " pressed."
+				
+		return msg
+		
 if __name__ == "__main__":
 
 	print ("----------------------------------------------------")
