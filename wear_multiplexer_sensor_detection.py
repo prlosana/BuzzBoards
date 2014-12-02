@@ -15,8 +15,9 @@ connected_sensor_motion = False
 if __name__ == "__main__":
 	#Main program
 	#-------------------------------------------------------------------------------
+	aux = True
 	try:
-		while True:
+		while aux:
 			#Enable multiplexer
 			try:
 				while (not connected_multiplexer):
@@ -43,7 +44,6 @@ if __name__ == "__main__":
 										#Set precision
 										decimals = 4
 										result = temperatureSensor.setPrecision(decimals)
-						
 										connected_sensor_temp = True
 										
 									except Exception as e: 
@@ -54,7 +54,6 @@ if __name__ == "__main__":
 									try:
 										#Start light sensor
 										lightSensor = wear_sensor_light.WearSensorLight(bus)
-									
 										connected_sensor_light = True
 										
 									except Exception as e: 	
@@ -65,7 +64,6 @@ if __name__ == "__main__":
 									try:
 										#Start motion sensor
 										motionSensor = wear_sensor_motion.WearSensorMotion(bus)
-									
 										connected_sensor_motion = True
 										
 									except Exception as e: 	
@@ -113,3 +111,4 @@ if __name__ == "__main__":
 
 	except KeyboardInterrupt:
 		print "Service detection stopped..."
+		aux = False
