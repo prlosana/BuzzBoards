@@ -86,6 +86,19 @@ if __name__ == "__main__":
 					except Exception as e: 
 						print "ERROR: HEAT SENSOR - ", e		
 						connected_sensor_temp = False
+				else:
+					try:
+						#Start temperature sensor
+						temperatureSensor = wear_sensor_heat.WearSensorHeat(bus)
+
+						#Set precision
+						decimals = 4
+						result = temperatureSensor.setPrecision(decimals)
+						connected_sensor_temp = True
+						
+					except Exception as e: 
+						#print "ERROR: HEAT SENSOR - ", e		
+						connected_sensor_temp = False
 				
 				if (connected_sensor_light):
 					try: 
@@ -94,6 +107,15 @@ if __name__ == "__main__":
 					except Exception as e: 	
 						print "ERROR: LIGHT SENSOR - ", e
 						connected_sensor_light = False
+				else:
+					try:
+						#Start light sensor
+						lightSensor = wear_sensor_light.WearSensorLight(bus)
+						connected_sensor_light = True
+						
+					except Exception as e: 	
+						#print "ERROR: LIGHT SENSOR - ", e
+						connected_sensor_light = False				
 
 				if (connected_sensor_motion):
 					try: 
@@ -104,6 +126,15 @@ if __name__ == "__main__":
 					except Exception as e: 	
 						print "ERROR: MOTION SENSOR - ", e
 						connected_sensor_motion = False
+				else:
+					try:
+						#Start motion sensor
+						motionSensor = wear_sensor_motion.WearSensorMotion(bus)
+						connected_sensor_motion = True
+						
+					except Exception as e: 	
+						#print "ERROR: MOTION SENSOR - ", e
+						connected_sensor_motion = False				
 						
 			except Exception as e: 
 				print "ERROR: MULTIPLEXER - ", e		
