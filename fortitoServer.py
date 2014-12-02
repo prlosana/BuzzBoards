@@ -124,8 +124,8 @@ class Fortito(Protocol):
 		subdata1 = data[0:subdata1_pos]
 		subvalue1 = 0
 		if data == "HELLO\n":
-			HOST1 = str(client_address[0])
-			print "Buttons host = ", HOST1
+			msg = "Greetings!"
+			print ("Greetings!")
 		elif data == "PLAY1\n":
 			pygame.mixer.init()
 			pygame.mixer.music.load("/home/pi/BuzzBoards/music1.mp3")
