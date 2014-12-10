@@ -8,9 +8,8 @@ import wear_sensor_heat
 import wear_sensor_light
 import wear_sensor_motion
 
-from twisted.internet.protocol import Protocol, Factory, ClientFactory, ServerFactory
-from twisted.internet import protocol, reactor, task
-from twisted.protocols import basic
+from twisted.internet.protocol import Protocol, Factory
+from twisted.internet import reactor, task
 
 i2cBus = 1	#This depends on the model of the Raspberry Pi
 box = None
@@ -26,9 +25,6 @@ connected_sensor_light = False
 connected_sensor_temp = False
 connected_sensor_motion = False
 current_channel = 0
-
-btn_result = ""
-btn_servers = []
 
 #Creates box instance
 try: 
@@ -63,29 +59,24 @@ except Expection as e:
 	connected_multiplexer = False
 	print ("ERROR: Multiplexer Unexpected error:", e)
 	#exitFlag = 1
-
+	
 class Fortito(Protocol):
+
 	def __init__(self, factory):
 		self.factory = factory
 		#Starts service for buttons
 		self.buttons_checker = task.LoopingCall(self.get_BUTTONS_STATUS)
-		self.buttons_checker.start(0.5, True)
+		self.buttons_checker.start(1, True)
 		#Starts service for sensors
 		self.sensors_checker = task.LoopingCall(self.sensorDiscoveryService)
 		self.sensors_checker.start(1, True)
 
 	def connectionMade(self):
-		#global btn_servers
 		self.factory.clients.append(self)
-		self._peer = self.transport.getPeer()
-		#btn_servers.append(self._peer)			#to send value of buttons
-		print ("Connection from ", self._peer)
+		print ("Client connected.")#, self.factory.clients)
 
 	def connectionLost(self, reason):
-		#global btn_servers
 		self.factory.clients.remove(self)
-		#btn_servers.remove(self._peer)			#to send value of buttons
-		print ("Lost connection from ", self._peer)	
 
 	def dataReceived(self, data):
 		print ("Data received: ", data)
@@ -97,19 +88,12 @@ class Fortito(Protocol):
 
 	def get_BUTTONS_STATUS(self):
 		global buttons
-		global btn_result
 		
 		#print ("get_BUTTONS_STATUS running......") 
 		result = buttons.readValue()
 		if result <> "":
-			btn_result = str(result)
-			print (btn_result, " pressed..............")
-
-			for index in range(len(btn_servers)):
-				print ("Trying connection to: ", btn_servers[index])	
-				reactor.connectTCP(btn_servers[index], 50001, ClientFactory()) #This to create connections to multiple servers
-			
-			#self.handle_MESSAGE(str(result) + "\n")		#Send to everyone (SERVER ROLE)		
+			print (str(result), " pressed..............")
+			self.handle_MESSAGE(str(result) + "\n")
 			result = ""	
 
 	def get_BUZZBOX_STATUS(self, data):
@@ -126,8 +110,7 @@ class Fortito(Protocol):
 		global connected_sensor_temp
 		global connected_sensor_motion
 		global current_channel
-		global btn_servers
-		
+
 		#Evaluates data
 		data = data.upper()
 		msg = "OK"
@@ -141,12 +124,8 @@ class Fortito(Protocol):
 		subdata1 = data[0:subdata1_pos]
 		subvalue1 = 0
 		if data == "HELLO\n":
-			try:
-				btn_servers.index(self._peer.host)
-				print ("Existent buttons host. ", self._peer.host)		
-			except Exception as e: 
-				btn_servers.append(self._peer.host)			#Add a server to the list for receiving updates on buttons
-				print ("New buttons host added. ", self._peer.host)
+			msg = "Greetings!"
+			print ("Greetings!")
 		elif data == "PLAY1\n":
 			pygame.mixer.init()
 			pygame.mixer.music.load("/home/pi/BuzzBoards/music1.mp3")
@@ -520,56 +499,14 @@ class Fortito(Protocol):
 				#print ("ERROR: MOTION SENSOR - ", e)
 				connected_sensor_motion = False
 			
-class ServerFactory(ServerFactory):
+class FortitoFactory(Factory):
 	def __init__(self):
 		self.clients = []
 
 	def buildProtocol(self, addr):
 		return Fortito(self)
-	
-class ControlClient(Protocol):
-	def connectionMade(self):
-		global btn_servers
-		global btn_result
-		
-		#print ("Buttons - Connected to: ", self.transport.getPeer().host)
-		try:				
-			print ("Buttons - message:", btn_result)
-			self.transport.write(btn_result)
-				
-			#self.factory.echoers.append(self)
-			self.transport.loseConnection()				
-		except Exception as e: 	
-			print ("ERROR: Buttons - No status to send.")#, e)
-				
-	def connectionLost(self, reason):
-		print ("Buttons - Connection closed. Host:", self.transport.getPeer().host)
-		#try:
-		#	btn_servers.remove(self.transport.getPeer().host)
-		#except Exception as e: 	
-		#	print ("ERROR: Couldn't remove server of the list.")#, e)
-		#self.factory.echoers.remove(self)
 
-	def dataReceived(self, data):
-		print ("Buttons - Data received: ", data)
-		#for echoer in self.factory.echoers:
-			#echoer.transport.write(data)
-		
-class ClientFactory(ClientFactory):
-	protocol = ControlClient
 
-	#def buildProtocol(self, addr):
-	#	print ('Connected to - ', addr.host)
-
-	def clientConnectionFailed(self, connector, reason):
-		global btn_servers
-		print ("Buttons - Connection failed. Removing buttons host:", connector.host)
-		try:
-			btn_servers.remove(connector.host)
-		except Exception as e: 	
-			print ("ERROR: Buttons - Couldn't remove server of the list.", e)
-		
-#Server factory
-reactor.listenTCP(50000, ServerFactory())
-print ("----> Fortito server started.")
+reactor.listenTCP(50000, FortitoFactory())
+print ("Fortito server started.")
 reactor.run()
