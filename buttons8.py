@@ -12,36 +12,36 @@ import time
 
 class Buttons8():
 
-    #I2C Addresses
-    #-------------------------------------------------------------------------------
-    address_buttons	= 0x22              #PCA8575 address
+	#I2C Addresses
+	#-------------------------------------------------------------------------------
+	address_buttons	= 0x22              #PCA8575 address
 
-    #Attributes
-    #-------------------------------------------------------------------------------
-    status_btn1 = "OFF"
-    status_btn2 = "OFF"
-    status_btn3 = "OFF"
-    status_btn4 = "OFF"
-    status_btn5 = "OFF"
-    status_btn6 = "OFF"
-    status_btn7 = "OFF"
-    status_btn8 = "OFF"
-    
+	#Attributes
+	#-------------------------------------------------------------------------------
+	status_btn1 = "OFF"
+	status_btn2 = "OFF"
+	status_btn3 = "OFF"
+	status_btn4 = "OFF"
+	status_btn5 = "OFF"
+	status_btn6 = "OFF"
+	status_btn7 = "OFF"
+	status_btn8 = "OFF"
+	
 	#Global variables
 	#-------------------------------------------------------------------------------
 	bus = 0
-    read_val = 255
+	read_val = 255
 
 	def __init__(self, busToUse = 0):
 		# Initialise values
 		self.bus = smbus.SMBus(busToUse) #open the bus on /dev/i2c-1
-        self.read_val = 255
+		self.read_val = 255
 	
-    def clean(self):
+	def clean(self):
 		# Clean values
 		self.read_val = 255
 
-    def readValue(self, debug = False):
+	def readValue(self, debug = False):
 		# Read values - Default value 255 (0xFF)
 		self.read_val = self.bus.read_byte(self.address_buttons)	
 		msg = ""
@@ -111,7 +111,7 @@ class Buttons8():
 				
 		return msg
 
-    def readValueVirtualBtn(self, btn_name = "BTN1", debug = False):
+	def readValueVirtualBtn(self, btn_name = "BTN1", debug = False):
 		# Read values - Default value 255 (0xFF)
 		msg = ""
 		time.sleep(0.2) #0.2 second
